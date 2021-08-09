@@ -513,7 +513,6 @@ impl ToR1cs {
                         self.set_bv_uint(bv, neg_x, n);
                     }
                     Op::BvUext(extra_n) => {
-                        // TODO: carry over bits if possible.
                         if self.bv_has_bits(&bv.cs[0]) {
                             let bits = self.get_bv_bits(&bv.cs[0]);
                             let ext_bits = std::iter::repeat(self.r1cs.zero()).take(*extra_n);
@@ -867,8 +866,8 @@ pub fn to_r1cs(cs: Computation, modulus: Integer) -> R1cs<String> {
     converter.r1cs
 }
 
-// Returns the number of bits needed to hold n.
-fn bitsize(mut n: usize) -> usize {
+/// Returns the number of bits needed to hold `n`.
+pub fn bitsize(mut n: usize) -> usize {
     let mut acc = 0;
     while n > 0 {
         n >>= 1;
@@ -878,7 +877,7 @@ fn bitsize(mut n: usize) -> usize {
 }
 
 #[cfg(test)]
-mod test {
+pub mod test {
     use super::*;
     use crate::ir::proof::Constraints;
     use crate::ir::term::dist::test::*;
@@ -916,7 +915,7 @@ mod test {
     }
 
     #[derive(Clone, Debug)]
-    struct PureBool(Term, AHashMap<String, Value>);
+    pub struct PureBool(pub Term, pub AHashMap<String, Value>);
 
     impl Arbitrary for PureBool {
         fn arbitrary(g: &mut Gen) -> Self {
@@ -1027,7 +1026,8 @@ mod test {
         r1cs2.check_all();
     }
 
-    fn bv(u: usize, w: usize) -> Term {
+    /// A bit-vector literal with value `u` and size `w`
+    pub fn bv(u: usize, w: usize) -> Term {
         leaf_term(Op::Const(Value::BitVector(BitVector::new(
             Integer::from(u),
             w,
