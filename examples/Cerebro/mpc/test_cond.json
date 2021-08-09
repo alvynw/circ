@@ -1,0 +1,2901 @@
+{
+    "body": [
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 12, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 1, 
+                        "col_offset": 29, 
+                        "n": 0
+                    }
+                ], 
+                "lineno": 1, 
+                "func": {
+                    "_type": "Attribute", 
+                    "attr": "read_input", 
+                    "col_offset": 12, 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "value": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "s_int", 
+                        "col_offset": 12, 
+                        "lineno": 1
+                    }, 
+                    "lineno": 1
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 1, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "cond_true", 
+                    "col_offset": 0, 
+                    "lineno": 1
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 13, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 2, 
+                        "col_offset": 30, 
+                        "n": 0
+                    }
+                ], 
+                "lineno": 2, 
+                "func": {
+                    "_type": "Attribute", 
+                    "attr": "read_input", 
+                    "col_offset": 13, 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "value": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "s_int", 
+                        "col_offset": 13, 
+                        "lineno": 2
+                    }, 
+                    "lineno": 2
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 2, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "cond_false", 
+                    "col_offset": 0, 
+                    "lineno": 2
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 4, 
+                        "col_offset": 10, 
+                        "n": 100
+                    }
+                ], 
+                "lineno": 4, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "c_int", 
+                    "col_offset": 4, 
+                    "lineno": 4
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 4, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "z", 
+                    "col_offset": 0, 
+                    "lineno": 4
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "BinOp", 
+                "op": {
+                    "_type": "Add"
+                }, 
+                "right": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Store"
+                        }, 
+                        "id": "z"
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Sub"
+                        }, 
+                        "right": {
+                            "_type": "Compare", 
+                            "ops": [
+                                {
+                                    "_type": "GtE"
+                                }
+                            ], 
+                            "comparators": [
+                                {
+                                    "_type": "Call", 
+                                    "starargs": null, 
+                                    "args": [
+                                        {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    ], 
+                                    "func": {
+                                        "_type": "Name", 
+                                        "id": "c_int"
+                                    }, 
+                                    "kwargs": null, 
+                                    "keywords": []
+                                }
+                            ], 
+                            "left": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "cond_true"
+                            }
+                        }, 
+                        "left": {
+                            "_type": "Num", 
+                            "n": 1
+                        }
+                    }
+                }, 
+                "left": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 6, 
+                                "col_offset": 14, 
+                                "n": 200
+                            }
+                        ], 
+                        "lineno": 6, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 6
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }, 
+                    "left": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "cond_true"
+                    }
+                }
+            }, 
+            "_type": "Assign", 
+            "lineno": 5, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "z"
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 8, 
+                        "col_offset": 10, 
+                        "n": -1
+                    }
+                ], 
+                "lineno": 8, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "c_int", 
+                    "col_offset": 4, 
+                    "lineno": 8
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 8, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "x", 
+                    "col_offset": 0, 
+                    "lineno": 8
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "BinOp", 
+                "op": {
+                    "_type": "Add"
+                }, 
+                "right": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 12, 
+                                "col_offset": 14, 
+                                "n": 2
+                            }
+                        ], 
+                        "lineno": 12, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 12
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Sub"
+                        }, 
+                        "right": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "cond_true"
+                        }, 
+                        "left": {
+                            "_type": "Num", 
+                            "n": 1
+                        }
+                    }
+                }, 
+                "left": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 10, 
+                                "col_offset": 14, 
+                                "n": 1
+                            }
+                        ], 
+                        "lineno": 10, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 10
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }, 
+                    "left": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "cond_true"
+                    }
+                }
+            }, 
+            "_type": "Assign", 
+            "lineno": 9, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "x"
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 14, 
+                        "col_offset": 10, 
+                        "n": 10
+                    }
+                ], 
+                "lineno": 14, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "c_int", 
+                    "col_offset": 4, 
+                    "lineno": 14
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 14, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "y", 
+                    "col_offset": 0, 
+                    "lineno": 14
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "BinOp", 
+                "op": {
+                    "_type": "Add"
+                }, 
+                "right": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 18, 
+                                "col_offset": 14, 
+                                "n": 30
+                            }
+                        ], 
+                        "lineno": 18, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 18
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Sub"
+                        }, 
+                        "right": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "cond_false"
+                        }, 
+                        "left": {
+                            "_type": "Num", 
+                            "n": 1
+                        }
+                    }
+                }, 
+                "left": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 16, 
+                                "col_offset": 14, 
+                                "n": 20
+                            }
+                        ], 
+                        "lineno": 16, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 16
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }, 
+                    "left": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "cond_false"
+                    }
+                }
+            }, 
+            "_type": "Assign", 
+            "lineno": 15, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "y"
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 20, 
+                        "col_offset": 10, 
+                        "n": 100
+                    }
+                ], 
+                "lineno": 20, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "c_int", 
+                    "col_offset": 4, 
+                    "lineno": 20
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 20, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "a", 
+                    "col_offset": 0, 
+                    "lineno": 20
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "BinOp", 
+                "op": {
+                    "_type": "Add"
+                }, 
+                "right": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Store"
+                        }, 
+                        "id": "a"
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Sub"
+                        }, 
+                        "right": {
+                            "_type": "Compare", 
+                            "ops": [
+                                {
+                                    "_type": "GtE"
+                                }
+                            ], 
+                            "comparators": [
+                                {
+                                    "_type": "Call", 
+                                    "starargs": null, 
+                                    "args": [
+                                        {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    ], 
+                                    "func": {
+                                        "_type": "Name", 
+                                        "id": "c_int"
+                                    }, 
+                                    "kwargs": null, 
+                                    "keywords": []
+                                }
+                            ], 
+                            "left": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "cond_false"
+                            }
+                        }, 
+                        "left": {
+                            "_type": "Num", 
+                            "n": 1
+                        }
+                    }
+                }, 
+                "left": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 22, 
+                                "col_offset": 14, 
+                                "n": 200
+                            }
+                        ], 
+                        "lineno": 22, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 22
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }, 
+                    "left": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "cond_false"
+                    }
+                }
+            }, 
+            "_type": "Assign", 
+            "lineno": 21, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "a"
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 25, 
+                        "col_offset": 10, 
+                        "n": 25
+                    }
+                ], 
+                "lineno": 25, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "c_int", 
+                    "col_offset": 4, 
+                    "lineno": 25
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 25, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "b", 
+                    "col_offset": 0, 
+                    "lineno": 25
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "BinOp", 
+                "op": {
+                    "_type": "Add"
+                }, 
+                "right": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Store"
+                        }, 
+                        "id": "b"
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Sub"
+                        }, 
+                        "right": {
+                            "_type": "Compare", 
+                            "ops": [
+                                {
+                                    "_type": "GtE"
+                                }
+                            ], 
+                            "comparators": [
+                                {
+                                    "_type": "Call", 
+                                    "starargs": null, 
+                                    "args": [
+                                        {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    ], 
+                                    "func": {
+                                        "_type": "Name", 
+                                        "id": "c_int"
+                                    }, 
+                                    "kwargs": null, 
+                                    "keywords": []
+                                }
+                            ], 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Add"
+                                }, 
+                                "right": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Mult"
+                                    }, 
+                                    "right": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Sub"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_true"
+                                        }, 
+                                        "left": {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    }, 
+                                    "left": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Sub"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_true"
+                                        }, 
+                                        "left": {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    }
+                                }, 
+                                "left": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Add"
+                                    }, 
+                                    "right": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Mult"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_true"
+                                        }, 
+                                        "left": {
+                                            "_type": "BinOp", 
+                                            "op": {
+                                                "_type": "Sub"
+                                            }, 
+                                            "right": {
+                                                "_type": "Name", 
+                                                "ctx": {
+                                                    "_type": "Load"
+                                                }, 
+                                                "id": "cond_true"
+                                            }, 
+                                            "left": {
+                                                "_type": "Num", 
+                                                "n": 1
+                                            }
+                                        }
+                                    }, 
+                                    "left": {
+                                        "_type": "Name", 
+                                        "ctx": {
+                                            "_type": "Load"
+                                        }, 
+                                        "id": "cond_true"
+                                    }
+                                }
+                            }
+                        }, 
+                        "left": {
+                            "_type": "Num", 
+                            "n": 1
+                        }
+                    }
+                }, 
+                "left": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Add"
+                    }, 
+                    "right": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Mult"
+                        }, 
+                        "right": {
+                            "_type": "Call", 
+                            "col_offset": 8, 
+                            "starargs": null, 
+                            "args": [
+                                {
+                                    "_type": "Num", 
+                                    "lineno": 32, 
+                                    "col_offset": 14, 
+                                    "n": 10
+                                }
+                            ], 
+                            "lineno": 32, 
+                            "func": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "c_int", 
+                                "col_offset": 8, 
+                                "lineno": 32
+                            }, 
+                            "kwargs": null, 
+                            "keywords": []
+                        }, 
+                        "left": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Sub"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_true"
+                                }, 
+                                "left": {
+                                    "_type": "Num", 
+                                    "n": 1
+                                }
+                            }, 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Sub"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_true"
+                                }, 
+                                "left": {
+                                    "_type": "Num", 
+                                    "n": 1
+                                }
+                            }
+                        }
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Add"
+                        }, 
+                        "right": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "Call", 
+                                "col_offset": 8, 
+                                "starargs": null, 
+                                "args": [
+                                    {
+                                        "_type": "Num", 
+                                        "lineno": 30, 
+                                        "col_offset": 14, 
+                                        "n": 5
+                                    }
+                                ], 
+                                "lineno": 30, 
+                                "func": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "c_int", 
+                                    "col_offset": 8, 
+                                    "lineno": 30
+                                }, 
+                                "kwargs": null, 
+                                "keywords": []
+                            }, 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Mult"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_true"
+                                }, 
+                                "left": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Sub"
+                                    }, 
+                                    "right": {
+                                        "_type": "Name", 
+                                        "ctx": {
+                                            "_type": "Load"
+                                        }, 
+                                        "id": "cond_true"
+                                    }, 
+                                    "left": {
+                                        "_type": "Num", 
+                                        "n": 1
+                                    }
+                                }
+                            }
+                        }, 
+                        "left": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "Call", 
+                                "col_offset": 8, 
+                                "starargs": null, 
+                                "args": [
+                                    {
+                                        "_type": "Num", 
+                                        "lineno": 28, 
+                                        "col_offset": 14, 
+                                        "n": 3
+                                    }
+                                ], 
+                                "lineno": 28, 
+                                "func": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "c_int", 
+                                    "col_offset": 8, 
+                                    "lineno": 28
+                                }, 
+                                "kwargs": null, 
+                                "keywords": []
+                            }, 
+                            "left": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "cond_true"
+                            }
+                        }
+                    }
+                }
+            }, 
+            "_type": "Assign", 
+            "lineno": 27, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "b"
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 35, 
+                        "col_offset": 10, 
+                        "n": 10
+                    }
+                ], 
+                "lineno": 35, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "c_int", 
+                    "col_offset": 4, 
+                    "lineno": 35
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 35, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "c", 
+                    "col_offset": 0, 
+                    "lineno": 35
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "BinOp", 
+                "op": {
+                    "_type": "Add"
+                }, 
+                "right": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Store"
+                        }, 
+                        "id": "c"
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Sub"
+                        }, 
+                        "right": {
+                            "_type": "Compare", 
+                            "ops": [
+                                {
+                                    "_type": "GtE"
+                                }
+                            ], 
+                            "comparators": [
+                                {
+                                    "_type": "Call", 
+                                    "starargs": null, 
+                                    "args": [
+                                        {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    ], 
+                                    "func": {
+                                        "_type": "Name", 
+                                        "id": "c_int"
+                                    }, 
+                                    "kwargs": null, 
+                                    "keywords": []
+                                }
+                            ], 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Add"
+                                }, 
+                                "right": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Mult"
+                                    }, 
+                                    "right": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Sub"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_true"
+                                        }, 
+                                        "left": {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    }, 
+                                    "left": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Sub"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_false"
+                                        }, 
+                                        "left": {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    }
+                                }, 
+                                "left": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Add"
+                                    }, 
+                                    "right": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Mult"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_true"
+                                        }, 
+                                        "left": {
+                                            "_type": "BinOp", 
+                                            "op": {
+                                                "_type": "Sub"
+                                            }, 
+                                            "right": {
+                                                "_type": "Name", 
+                                                "ctx": {
+                                                    "_type": "Load"
+                                                }, 
+                                                "id": "cond_false"
+                                            }, 
+                                            "left": {
+                                                "_type": "Num", 
+                                                "n": 1
+                                            }
+                                        }
+                                    }, 
+                                    "left": {
+                                        "_type": "Name", 
+                                        "ctx": {
+                                            "_type": "Load"
+                                        }, 
+                                        "id": "cond_false"
+                                    }
+                                }
+                            }
+                        }, 
+                        "left": {
+                            "_type": "Num", 
+                            "n": 1
+                        }
+                    }
+                }, 
+                "left": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Add"
+                    }, 
+                    "right": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Mult"
+                        }, 
+                        "right": {
+                            "_type": "Call", 
+                            "col_offset": 8, 
+                            "starargs": null, 
+                            "args": [
+                                {
+                                    "_type": "Num", 
+                                    "lineno": 41, 
+                                    "col_offset": 14, 
+                                    "n": 41
+                                }
+                            ], 
+                            "lineno": 41, 
+                            "func": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "c_int", 
+                                "col_offset": 8, 
+                                "lineno": 41
+                            }, 
+                            "kwargs": null, 
+                            "keywords": []
+                        }, 
+                        "left": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Sub"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_true"
+                                }, 
+                                "left": {
+                                    "_type": "Num", 
+                                    "n": 1
+                                }
+                            }, 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Sub"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_false"
+                                }, 
+                                "left": {
+                                    "_type": "Num", 
+                                    "n": 1
+                                }
+                            }
+                        }
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Add"
+                        }, 
+                        "right": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "Call", 
+                                "col_offset": 8, 
+                                "starargs": null, 
+                                "args": [
+                                    {
+                                        "_type": "Num", 
+                                        "lineno": 39, 
+                                        "col_offset": 14, 
+                                        "n": 31
+                                    }
+                                ], 
+                                "lineno": 39, 
+                                "func": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "c_int", 
+                                    "col_offset": 8, 
+                                    "lineno": 39
+                                }, 
+                                "kwargs": null, 
+                                "keywords": []
+                            }, 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Mult"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_true"
+                                }, 
+                                "left": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Sub"
+                                    }, 
+                                    "right": {
+                                        "_type": "Name", 
+                                        "ctx": {
+                                            "_type": "Load"
+                                        }, 
+                                        "id": "cond_false"
+                                    }, 
+                                    "left": {
+                                        "_type": "Num", 
+                                        "n": 1
+                                    }
+                                }
+                            }
+                        }, 
+                        "left": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "Call", 
+                                "col_offset": 8, 
+                                "starargs": null, 
+                                "args": [
+                                    {
+                                        "_type": "Num", 
+                                        "lineno": 37, 
+                                        "col_offset": 14, 
+                                        "n": 21
+                                    }
+                                ], 
+                                "lineno": 37, 
+                                "func": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "c_int", 
+                                    "col_offset": 8, 
+                                    "lineno": 37
+                                }, 
+                                "kwargs": null, 
+                                "keywords": []
+                            }, 
+                            "left": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "cond_false"
+                            }
+                        }
+                    }
+                }
+            }, 
+            "_type": "Assign", 
+            "lineno": 36, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "c"
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 43, 
+                        "col_offset": 10, 
+                        "n": 1
+                    }
+                ], 
+                "lineno": 43, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "c_int", 
+                    "col_offset": 4, 
+                    "lineno": 43
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 43, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "d", 
+                    "col_offset": 0, 
+                    "lineno": 43
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "BinOp", 
+                "op": {
+                    "_type": "Add"
+                }, 
+                "right": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Store"
+                        }, 
+                        "id": "d"
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Sub"
+                        }, 
+                        "right": {
+                            "_type": "Compare", 
+                            "ops": [
+                                {
+                                    "_type": "GtE"
+                                }
+                            ], 
+                            "comparators": [
+                                {
+                                    "_type": "Call", 
+                                    "starargs": null, 
+                                    "args": [
+                                        {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    ], 
+                                    "func": {
+                                        "_type": "Name", 
+                                        "id": "c_int"
+                                    }, 
+                                    "kwargs": null, 
+                                    "keywords": []
+                                }
+                            ], 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Add"
+                                }, 
+                                "right": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Mult"
+                                    }, 
+                                    "right": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Sub"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_false"
+                                        }, 
+                                        "left": {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    }, 
+                                    "left": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Sub"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_true"
+                                        }, 
+                                        "left": {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    }
+                                }, 
+                                "left": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Add"
+                                    }, 
+                                    "right": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Mult"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_false"
+                                        }, 
+                                        "left": {
+                                            "_type": "BinOp", 
+                                            "op": {
+                                                "_type": "Sub"
+                                            }, 
+                                            "right": {
+                                                "_type": "Name", 
+                                                "ctx": {
+                                                    "_type": "Load"
+                                                }, 
+                                                "id": "cond_true"
+                                            }, 
+                                            "left": {
+                                                "_type": "Num", 
+                                                "n": 1
+                                            }
+                                        }
+                                    }, 
+                                    "left": {
+                                        "_type": "Name", 
+                                        "ctx": {
+                                            "_type": "Load"
+                                        }, 
+                                        "id": "cond_true"
+                                    }
+                                }
+                            }
+                        }, 
+                        "left": {
+                            "_type": "Num", 
+                            "n": 1
+                        }
+                    }
+                }, 
+                "left": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Add"
+                    }, 
+                    "right": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Mult"
+                        }, 
+                        "right": {
+                            "_type": "Call", 
+                            "col_offset": 8, 
+                            "starargs": null, 
+                            "args": [
+                                {
+                                    "_type": "Num", 
+                                    "lineno": 49, 
+                                    "col_offset": 14, 
+                                    "n": 46
+                                }
+                            ], 
+                            "lineno": 49, 
+                            "func": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "c_int", 
+                                "col_offset": 8, 
+                                "lineno": 49
+                            }, 
+                            "kwargs": null, 
+                            "keywords": []
+                        }, 
+                        "left": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Sub"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_false"
+                                }, 
+                                "left": {
+                                    "_type": "Num", 
+                                    "n": 1
+                                }
+                            }, 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Sub"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_true"
+                                }, 
+                                "left": {
+                                    "_type": "Num", 
+                                    "n": 1
+                                }
+                            }
+                        }
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Add"
+                        }, 
+                        "right": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "Call", 
+                                "col_offset": 8, 
+                                "starargs": null, 
+                                "args": [
+                                    {
+                                        "_type": "Num", 
+                                        "lineno": 47, 
+                                        "col_offset": 14, 
+                                        "n": 38
+                                    }
+                                ], 
+                                "lineno": 47, 
+                                "func": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "c_int", 
+                                    "col_offset": 8, 
+                                    "lineno": 47
+                                }, 
+                                "kwargs": null, 
+                                "keywords": []
+                            }, 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Mult"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_false"
+                                }, 
+                                "left": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Sub"
+                                    }, 
+                                    "right": {
+                                        "_type": "Name", 
+                                        "ctx": {
+                                            "_type": "Load"
+                                        }, 
+                                        "id": "cond_true"
+                                    }, 
+                                    "left": {
+                                        "_type": "Num", 
+                                        "n": 1
+                                    }
+                                }
+                            }
+                        }, 
+                        "left": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "Call", 
+                                "col_offset": 8, 
+                                "starargs": null, 
+                                "args": [
+                                    {
+                                        "_type": "Num", 
+                                        "lineno": 45, 
+                                        "col_offset": 14, 
+                                        "n": 22
+                                    }
+                                ], 
+                                "lineno": 45, 
+                                "func": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "c_int", 
+                                    "col_offset": 8, 
+                                    "lineno": 45
+                                }, 
+                                "kwargs": null, 
+                                "keywords": []
+                            }, 
+                            "left": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "cond_true"
+                            }
+                        }
+                    }
+                }
+            }, 
+            "_type": "Assign", 
+            "lineno": 44, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "d"
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 51, 
+                        "col_offset": 10, 
+                        "n": 3
+                    }
+                ], 
+                "lineno": 51, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "c_int", 
+                    "col_offset": 4, 
+                    "lineno": 51
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 51, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "e", 
+                    "col_offset": 0, 
+                    "lineno": 51
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "BinOp", 
+                "op": {
+                    "_type": "Add"
+                }, 
+                "right": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Store"
+                        }, 
+                        "id": "e"
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Sub"
+                        }, 
+                        "right": {
+                            "_type": "Compare", 
+                            "ops": [
+                                {
+                                    "_type": "GtE"
+                                }
+                            ], 
+                            "comparators": [
+                                {
+                                    "_type": "Call", 
+                                    "starargs": null, 
+                                    "args": [
+                                        {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    ], 
+                                    "func": {
+                                        "_type": "Name", 
+                                        "id": "c_int"
+                                    }, 
+                                    "kwargs": null, 
+                                    "keywords": []
+                                }
+                            ], 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Add"
+                                }, 
+                                "right": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Mult"
+                                    }, 
+                                    "right": {
+                                        "_type": "Name", 
+                                        "ctx": {
+                                            "_type": "Load"
+                                        }, 
+                                        "id": "cond_true"
+                                    }, 
+                                    "left": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Sub"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_true"
+                                        }, 
+                                        "left": {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    }
+                                }, 
+                                "left": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_true"
+                                }
+                            }
+                        }, 
+                        "left": {
+                            "_type": "Num", 
+                            "n": 1
+                        }
+                    }
+                }, 
+                "left": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Add"
+                    }, 
+                    "right": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Mult"
+                        }, 
+                        "right": {
+                            "_type": "Call", 
+                            "col_offset": 8, 
+                            "starargs": null, 
+                            "args": [
+                                {
+                                    "_type": "Num", 
+                                    "lineno": 55, 
+                                    "col_offset": 14, 
+                                    "n": 8
+                                }
+                            ], 
+                            "lineno": 55, 
+                            "func": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "c_int", 
+                                "col_offset": 8, 
+                                "lineno": 55
+                            }, 
+                            "kwargs": null, 
+                            "keywords": []
+                        }, 
+                        "left": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "cond_true"
+                            }, 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Sub"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_true"
+                                }, 
+                                "left": {
+                                    "_type": "Num", 
+                                    "n": 1
+                                }
+                            }
+                        }
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Mult"
+                        }, 
+                        "right": {
+                            "_type": "Call", 
+                            "col_offset": 8, 
+                            "starargs": null, 
+                            "args": [
+                                {
+                                    "_type": "Num", 
+                                    "lineno": 53, 
+                                    "col_offset": 14, 
+                                    "n": 5
+                                }
+                            ], 
+                            "lineno": 53, 
+                            "func": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "c_int", 
+                                "col_offset": 8, 
+                                "lineno": 53
+                            }, 
+                            "kwargs": null, 
+                            "keywords": []
+                        }, 
+                        "left": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "cond_true"
+                        }
+                    }
+                }
+            }, 
+            "_type": "Assign", 
+            "lineno": 52, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "e"
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 57, 
+                        "col_offset": 10, 
+                        "n": 10
+                    }
+                ], 
+                "lineno": 57, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "c_int", 
+                    "col_offset": 4, 
+                    "lineno": 57
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 57, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "f", 
+                    "col_offset": 0, 
+                    "lineno": 57
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "BinOp", 
+                "op": {
+                    "_type": "Add"
+                }, 
+                "right": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Mult"
+                    }, 
+                    "right": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Store"
+                        }, 
+                        "id": "f"
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Sub"
+                        }, 
+                        "right": {
+                            "_type": "Compare", 
+                            "ops": [
+                                {
+                                    "_type": "GtE"
+                                }
+                            ], 
+                            "comparators": [
+                                {
+                                    "_type": "Call", 
+                                    "starargs": null, 
+                                    "args": [
+                                        {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    ], 
+                                    "func": {
+                                        "_type": "Name", 
+                                        "id": "c_int"
+                                    }, 
+                                    "kwargs": null, 
+                                    "keywords": []
+                                }
+                            ], 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Add"
+                                }, 
+                                "right": {
+                                    "_type": "BinOp", 
+                                    "op": {
+                                        "_type": "Mult"
+                                    }, 
+                                    "right": {
+                                        "_type": "Name", 
+                                        "ctx": {
+                                            "_type": "Load"
+                                        }, 
+                                        "id": "cond_false"
+                                    }, 
+                                    "left": {
+                                        "_type": "BinOp", 
+                                        "op": {
+                                            "_type": "Sub"
+                                        }, 
+                                        "right": {
+                                            "_type": "Name", 
+                                            "ctx": {
+                                                "_type": "Load"
+                                            }, 
+                                            "id": "cond_false"
+                                        }, 
+                                        "left": {
+                                            "_type": "Num", 
+                                            "n": 1
+                                        }
+                                    }
+                                }, 
+                                "left": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_false"
+                                }
+                            }
+                        }, 
+                        "left": {
+                            "_type": "Num", 
+                            "n": 1
+                        }
+                    }
+                }, 
+                "left": {
+                    "_type": "BinOp", 
+                    "op": {
+                        "_type": "Add"
+                    }, 
+                    "right": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Mult"
+                        }, 
+                        "right": {
+                            "_type": "Call", 
+                            "col_offset": 8, 
+                            "starargs": null, 
+                            "args": [
+                                {
+                                    "_type": "Num", 
+                                    "lineno": 61, 
+                                    "col_offset": 14, 
+                                    "n": 15
+                                }
+                            ], 
+                            "lineno": 61, 
+                            "func": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "c_int", 
+                                "col_offset": 8, 
+                                "lineno": 61
+                            }, 
+                            "kwargs": null, 
+                            "keywords": []
+                        }, 
+                        "left": {
+                            "_type": "BinOp", 
+                            "op": {
+                                "_type": "Mult"
+                            }, 
+                            "right": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "cond_false"
+                            }, 
+                            "left": {
+                                "_type": "BinOp", 
+                                "op": {
+                                    "_type": "Sub"
+                                }, 
+                                "right": {
+                                    "_type": "Name", 
+                                    "ctx": {
+                                        "_type": "Load"
+                                    }, 
+                                    "id": "cond_false"
+                                }, 
+                                "left": {
+                                    "_type": "Num", 
+                                    "n": 1
+                                }
+                            }
+                        }
+                    }, 
+                    "left": {
+                        "_type": "BinOp", 
+                        "op": {
+                            "_type": "Mult"
+                        }, 
+                        "right": {
+                            "_type": "Call", 
+                            "col_offset": 8, 
+                            "starargs": null, 
+                            "args": [
+                                {
+                                    "_type": "Num", 
+                                    "lineno": 59, 
+                                    "col_offset": 14, 
+                                    "n": 12
+                                }
+                            ], 
+                            "lineno": 59, 
+                            "func": {
+                                "_type": "Name", 
+                                "ctx": {
+                                    "_type": "Load"
+                                }, 
+                                "id": "c_int", 
+                                "col_offset": 8, 
+                                "lineno": 59
+                            }, 
+                            "kwargs": null, 
+                            "keywords": []
+                        }, 
+                        "left": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "cond_false"
+                        }
+                    }
+                }
+            }, 
+            "_type": "Assign", 
+            "lineno": 58, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "f"
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "x", 
+                        "col_offset": 5, 
+                        "lineno": 65
+                    }, 
+                    {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 65, 
+                                "col_offset": 14, 
+                                "n": 1
+                            }
+                        ], 
+                        "lineno": 65, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 65
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }
+                ], 
+                "lineno": 65, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 65
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 65, 
+            "col_offset": 0
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "y", 
+                        "col_offset": 5, 
+                        "lineno": 66
+                    }, 
+                    {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 66, 
+                                "col_offset": 14, 
+                                "n": 30
+                            }
+                        ], 
+                        "lineno": 66, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 66
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }
+                ], 
+                "lineno": 66, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 66
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 66, 
+            "col_offset": 0
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "z", 
+                        "col_offset": 5, 
+                        "lineno": 67
+                    }, 
+                    {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 67, 
+                                "col_offset": 14, 
+                                "n": 200
+                            }
+                        ], 
+                        "lineno": 67, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 67
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }
+                ], 
+                "lineno": 67, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 67
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 67, 
+            "col_offset": 0
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "a", 
+                        "col_offset": 5, 
+                        "lineno": 68
+                    }, 
+                    {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 68, 
+                                "col_offset": 14, 
+                                "n": 100
+                            }
+                        ], 
+                        "lineno": 68, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 68
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }
+                ], 
+                "lineno": 68, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 68
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 68, 
+            "col_offset": 0
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "b", 
+                        "col_offset": 5, 
+                        "lineno": 69
+                    }, 
+                    {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 69, 
+                                "col_offset": 14, 
+                                "n": 3
+                            }
+                        ], 
+                        "lineno": 69, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 69
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }
+                ], 
+                "lineno": 69, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 69
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 69, 
+            "col_offset": 0
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "c", 
+                        "col_offset": 5, 
+                        "lineno": 70
+                    }, 
+                    {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 70, 
+                                "col_offset": 14, 
+                                "n": 31
+                            }
+                        ], 
+                        "lineno": 70, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 70
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }
+                ], 
+                "lineno": 70, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 70
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 70, 
+            "col_offset": 0
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "d", 
+                        "col_offset": 5, 
+                        "lineno": 71
+                    }, 
+                    {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 71, 
+                                "col_offset": 14, 
+                                "n": 22
+                            }
+                        ], 
+                        "lineno": 71, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 71
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }
+                ], 
+                "lineno": 71, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 71
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 71, 
+            "col_offset": 0
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "e", 
+                        "col_offset": 5, 
+                        "lineno": 72
+                    }, 
+                    {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 72, 
+                                "col_offset": 14, 
+                                "n": 5
+                            }
+                        ], 
+                        "lineno": 72, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 72
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }
+                ], 
+                "lineno": 72, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 72
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 72, 
+            "col_offset": 0
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "f", 
+                        "col_offset": 5, 
+                        "lineno": 73
+                    }, 
+                    {
+                        "_type": "Call", 
+                        "col_offset": 8, 
+                        "starargs": null, 
+                        "args": [
+                            {
+                                "_type": "Num", 
+                                "lineno": 73, 
+                                "col_offset": 14, 
+                                "n": 10
+                            }
+                        ], 
+                        "lineno": 73, 
+                        "func": {
+                            "_type": "Name", 
+                            "ctx": {
+                                "_type": "Load"
+                            }, 
+                            "id": "c_int", 
+                            "col_offset": 8, 
+                            "lineno": 73
+                        }, 
+                        "kwargs": null, 
+                        "keywords": []
+                    }
+                ], 
+                "lineno": 73, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 73
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 73, 
+            "col_offset": 0
+        }, 
+        {
+            "value": {
+                "s": "\nreveal_all(x, \"should be 1\")\nreveal_all(y, \"should be 30\")\nreveal_all(z, \"should be 200\")\nreveal_all(a, \"should be 100\")\nreveal_all(b, \"should be 3\")\nreveal_all(c, \"should be 31\")\nreveal_all(d, \"should be 22\")\nreveal_all(e, \"should be 5\")\nreveal_all(f, \"should be 10\")\n", 
+                "_type": "Str", 
+                "lineno": 85, 
+                "col_offset": -1
+            }, 
+            "_type": "Expr", 
+            "lineno": 85, 
+            "col_offset": -1
+        }
+    ], 
+    "_type": "Module"
+}

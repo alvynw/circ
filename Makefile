@@ -1,7 +1,7 @@
 all: build test 
 
 build: init
-	cargo build --release --example circ && ./scripts/build_mpc_zokrates_test.zsh && ./scripts/build_aby.zsh
+	cargo build --release --example circ && cargo build --release --example cerebro && ./scripts/build_mpc_zokrates_test.zsh && ./scripts/build_mpc_cerebro_test.zsh && ./scripts/build_aby.zsh
 
 test:
 	cargo test && ./scripts/zokrates_test.zsh && python3 ./scripts/test_aby.py

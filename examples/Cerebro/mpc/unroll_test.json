@@ -1,0 +1,540 @@
+{
+    "body": [
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 8, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 1, 
+                        "col_offset": 25, 
+                        "n": 0
+                    }
+                ], 
+                "lineno": 1, 
+                "func": {
+                    "_type": "Attribute", 
+                    "attr": "read_input", 
+                    "col_offset": 8, 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "value": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "s_int", 
+                        "col_offset": 8, 
+                        "lineno": 1
+                    }, 
+                    "lineno": 1
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 1, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "total", 
+                    "col_offset": 0, 
+                    "lineno": 1
+                }
+            ]
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 4, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Num", 
+                        "lineno": 2, 
+                        "col_offset": 21, 
+                        "n": 1
+                    }
+                ], 
+                "lineno": 2, 
+                "func": {
+                    "_type": "Attribute", 
+                    "attr": "read_input", 
+                    "col_offset": 4, 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "value": {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "s_int", 
+                        "col_offset": 4, 
+                        "lineno": 2
+                    }, 
+                    "lineno": 2
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Assign", 
+            "lineno": 2, 
+            "col_offset": 0, 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "a", 
+                    "col_offset": 0, 
+                    "lineno": 2
+                }
+            ]
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 0
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 0
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 1
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 1
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 2
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 2
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 3
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 3
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 4
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 4
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 5
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 5
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 6
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 6
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 7
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 7
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 8
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 8
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "Assign", 
+            "targets": [
+                {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Store"
+                    }, 
+                    "id": "i"
+                }
+            ], 
+            "value": {
+                "_type": "Num", 
+                "n": 9
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 4, 
+                "lineno": 5
+            }, 
+            "col_offset": 4, 
+            "value": {
+                "_type": "Num", 
+                "n": 9
+            }, 
+            "lineno": 5, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "_type": "AugAssign", 
+            "target": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Store"
+                }, 
+                "id": "total", 
+                "col_offset": 0, 
+                "lineno": 7
+            }, 
+            "col_offset": 0, 
+            "value": {
+                "_type": "Name", 
+                "ctx": {
+                    "_type": "Load"
+                }, 
+                "id": "a", 
+                "col_offset": 9, 
+                "lineno": 7
+            }, 
+            "lineno": 7, 
+            "op": {
+                "_type": "Add"
+            }
+        }, 
+        {
+            "value": {
+                "_type": "Call", 
+                "col_offset": 0, 
+                "starargs": null, 
+                "args": [
+                    {
+                        "_type": "Name", 
+                        "ctx": {
+                            "_type": "Load"
+                        }, 
+                        "id": "total", 
+                        "col_offset": 5, 
+                        "lineno": 9
+                    }, 
+                    {
+                        "_type": "Num", 
+                        "lineno": 9, 
+                        "col_offset": 12, 
+                        "n": 50
+                    }
+                ], 
+                "lineno": 9, 
+                "func": {
+                    "_type": "Name", 
+                    "ctx": {
+                        "_type": "Load"
+                    }, 
+                    "id": "test", 
+                    "col_offset": 0, 
+                    "lineno": 9
+                }, 
+                "kwargs": null, 
+                "keywords": []
+            }, 
+            "_type": "Expr", 
+            "lineno": 9, 
+            "col_offset": 0
+        }
+    ], 
+    "_type": "Module"
+}

@@ -1,6 +1,7 @@
 //! Input language front-ends
 
 pub mod zokrates;
+pub mod cerebro;
 
 use super::ir::term::Computation;
 

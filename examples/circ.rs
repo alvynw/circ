@@ -13,6 +13,9 @@ use env_logger;
 use std::path::PathBuf;
 use structopt::StructOpt;
 
+use circ::front::cerebro::parser::*;
+
+
 #[derive(Debug, StructOpt)]
 #[structopt(name = "circ", about = "CirC: the circuit compiler")]
 struct Options {
@@ -84,6 +87,7 @@ fn main() {
             let aby = to_aby(cs);
             write_aby_exec(aby, path_buf);
         }
+        
     }
 
     //r1cs.check_all();

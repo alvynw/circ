@@ -319,6 +319,7 @@ impl ToABY {
             EmbeddedTerm::Bv(b) => b.clone(),
             _ => panic!("Non-bv for {:?}", t),
         }
+
     }
 
     fn embed_bv(&mut self, t: Term) -> String {
@@ -337,7 +338,7 @@ impl ToABY {
             Op::Const(Value::BitVector(b)) => {
                 self.cache.insert(
                     t.clone(),
-                    EmbeddedTerm::Bool(format!(
+                    EmbeddedTerm::Bv(format!(
                         "circ->PutCONSGate((uint64_t){}, (uint32_t){})",
                         b,
                         b.width()
