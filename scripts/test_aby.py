@@ -59,12 +59,27 @@ arithmetic_tests = [
         [0, 0],
     ], 
     [
-        "Cerebro -- Unroll Test- 1",
+        "Cerebro -- Unroll Test- 4",
         1,
         "./third_party/ABY/build/bin/unroll_test_test",
         [5, 0],
         [0, 0],
     ], 
+    [
+        "Cerebro -- Mini Cond- 1",
+        # -1
+        4294967295,
+        "./third_party/ABY/build/bin/mini_cond_test",
+        [1, 0],
+        [0, 0],
+    ],
+    [
+        "Cerebro -- Mini Cond- 1",
+        1,
+        "./third_party/ABY/build/bin/mini_cond_test",
+        [0, 0],
+        [0, 0],
+    ],  
     [
         "Add two numbers - 1",
         3,

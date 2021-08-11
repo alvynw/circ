@@ -27,3 +27,4 @@ function mpc_test {
 mpc_test 2 ./examples/Cerebro/mpc/sum_2p.json
 mpc_test 2 ./examples/Cerebro/mpc/unroll_reveal.json
 mpc_test 2 ./examples/Cerebro/mpc/unroll_test.json
+mpc_test 2 ./examples/Cerebro/mpc/mini_cond.json

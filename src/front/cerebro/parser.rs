@@ -57,8 +57,6 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
 
             //compute RHS of assignment
             let val: Term = evaluate_expr(value["value"].clone(), symbol_table, metadata, &target);
-            
-            //println!("Target: {}\nValue: {}\n", target, val);
 
             //update symbol table
             symbol_table.insert(target, val);
@@ -68,7 +66,7 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
             let target: String = value["target"]["id"].as_str().unwrap().to_string();
 
             //`target` should already be in symbol table
-            if (!symbol_table.contains_key(&target)) {
+            if !symbol_table.contains_key(&target) {
                 println!("!!!!!!!!!!!!!")
             }
 
@@ -100,11 +98,11 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
             let func = call["func"].clone();
             let func_name = func["id"].clone().as_str().unwrap().to_string();
 
-            if (func_name == "reveal_all") {
+            if func_name == "reveal_all" {
                 let reveal_var = call["args"][0]["id"].as_str().unwrap().to_string();
                 let reveal_var_term = (*symbol_table.get(&reveal_var).unwrap()).clone();
                 outputs.push(reveal_var_term);
-            } else if (func_name == "test") {
+            } else if func_name == "test" {
                 let left = evaluate_expr(call["args"][0].clone(), symbol_table, metadata, "");
                 let right = evaluate_expr(call["args"][1].clone(), symbol_table, metadata, "");
 
@@ -135,8 +133,6 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
             let left = evaluate_expr(value["left"].clone(), symbol_table, metadata, "");
             let sort_left: Sort = check_rec(&left);
 
-            //println!("{}", sort_left);
-
             let right = evaluate_expr(value["right"].clone(), symbol_table, metadata, "");
             let sort_right: Sort = check_rec(&right);
 
@@ -145,8 +141,6 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
             }
 
             let op_str = value["op"]["_type"].as_str().unwrap().to_string();
-
-            //println!("{}", op_str);
 
             //map op to one of the BvBinOps
             let op = map_nary_op(sort_left, op_str);
@@ -159,24 +153,86 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
 
             let func_type = func["_type"].as_str().unwrap().to_string();
 
-            if (func_type == "Attribute") {
-                //assume it's s_int
-                let party_id = value["args"][0]["n"].as_u64().unwrap() as u8;
-            
-                metadata.new_input(name.to_string(), Some(party_id));
+            if func_type == "Attribute" {
+                let func_name = func["value"]["id"].as_str().unwrap().to_string();
 
-                //32-bit BitVector
-                return leaf_term(Op::Var(name.to_string(), Sort::BitVector(32)));
+                if func_name == "s_int" {
+                    let party_id = value["args"][0]["n"].as_u64().unwrap() as u8;
+                                
+                    metadata.new_input(name.to_string(), Some(party_id));
 
-            } else if (func_type == "Name") {
-                //assume it's c_int
+                    //32-bit BitVector
+                    return leaf_term(Op::Var(name.to_string(), Sort::BitVector(32)));
 
-                let c_int_val = value["args"][0]["n"].as_u64().unwrap() as i64;
-                let uint_integer = Integer::from(c_int_val);
-                let a: usize = 32;
-                let bv: BitVector = BitVector::new(uint_integer, a);
+                } else if func_name == "s_int_array" {
+                    let length = value["args"][0]["n"].as_u64().unwrap() as usize;
+                    let party_id = value["args"][1]["n"].as_u64().unwrap() as u8;
 
-                return leaf_term(Op::Const(crate::ir::term::Value::BitVector(bv)));
+                    metadata.new_input(name.to_string(), Some(party_id));
+
+                    //Array of 32-bit BitVectors
+                    return leaf_term(Op::Var(name.to_string(), Sort::Array(Box::new(Sort::BitVector(32)), Box::new(Sort::BitVector(32)), length)));
+                } else if func_name == "s_int_mat" {
+                    let rows = value["args"][0]["n"].as_u64().unwrap() as usize;
+                    let cols = value["args"][1]["n"].as_u64().unwrap() as usize;
+                    let party_id = value["args"][2]["n"].as_u64().unwrap() as u8;
+
+                    metadata.new_input(name.to_string(), Some(party_id));
+
+                    //Array of Array of 32-bit BitVectors
+                    return leaf_term(Op::Var(name.to_string(), 
+                        Sort::Array(
+                            Box::new(Sort::BitVector(32)), 
+                            Box::new(Sort::Array(Box::new(Sort::BitVector(32)), Box::new(Sort::BitVector(32)), cols)),
+                            rows)
+                        )
+                    );
+                }
+
+            } else if func_type == "Name" {
+                let func_name = func["id"].as_str().unwrap().to_string();
+
+                if func_name == "c_int" {
+                    //assume it's c_int
+                    let c_int_val = value["args"][0]["n"].as_i64().unwrap() as u32;
+                    let uint_integer = Integer::from(c_int_val);
+                    let a: usize = 32;
+                    let bv: BitVector = BitVector::new(uint_integer, a);
+
+                    return leaf_term(Op::Const(crate::ir::term::Value::BitVector(bv)));
+                } else if func_name == "c_int_array" {
+                    let length =  value["args"][0]["n"].as_i64().unwrap() as usize;
+
+                    return leaf_term(Op::Var(name.to_string(), Sort::Array(Box::new(Sort::BitVector(32)), Box::new(Sort::BitVector(32)), length)));                    
+
+                } else if func_name == "c_int_mat" {
+                    let rows = value["args"][0]["n"].as_u64().unwrap() as usize;
+                    let cols = value["args"][1]["n"].as_u64().unwrap() as usize;
+                    
+                    //Array of Array of 32-bit BitVectors
+                    return leaf_term(Op::Var(name.to_string(), 
+                        Sort::Array(
+                            Box::new(Sort::BitVector(32)), 
+                            Box::new(Sort::Array(Box::new(Sort::BitVector(32)), Box::new(Sort::BitVector(32)), cols)),
+                            rows)
+                        )
+                    );
+                    
+                } else if func_name == "array_index_secret_load_if" {
+                    //res = array_index_secret_load_if(cond, array, index1, index2)
+                        //does res = cond ? array[index1] : array[index2] 
+
+                    let cond = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, name);
+                    let array = evaluate_expr(value["args"][1].clone(), symbol_table, metadata, name);
+                    let index1 = evaluate_expr(value["args"][2].clone(), symbol_table, metadata, name);
+                    let index2 = evaluate_expr(value["args"][3].clone(), symbol_table, metadata, name);
+
+                    let array_index1 = term![Op::Select; array.clone(), index1];
+                    let array_index2 = term![Op::Select; array.clone(), index2];
+
+                    return term![Op::Ite; cond, array_index1, array_index2];
+                }
+                
             }
 
             return leaf_term(Op::Const(crate::ir::term::Value::F32(3.1415926)));
@@ -190,7 +246,7 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
             let right = evaluate_expr(value["comparators"][0].clone(), symbol_table, metadata, "");
             let sort_right: Sort = check_rec(&right);
 
-            if (sort_left != sort_right) {
+            if sort_left != sort_right {
                 //throw error
             }
 
@@ -207,7 +263,7 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
         "Num" => {
             //assume >= 0
             //assume bit vector length is 32 bits   
-            let uint = value["n"].as_i64().unwrap() as i32;
+            let uint = value["n"].as_i64().unwrap() as u32;
             let uint_integer = Integer::from(uint);
             let a: usize = 32;
             let bv: BitVector = BitVector::new(uint_integer, a);
@@ -227,6 +283,12 @@ fn map_nary_op(sort: Sort, op_name: String) -> Op {
             match op_name.as_ref() {
                 "Add" => {
                     return BV_ADD;
+                },
+                "Sub" => {
+                    return BV_SUB;
+                },
+                "Mult" => {
+                    return BV_MUL;
                 },
                 _ => {
                     return BV_AND;
