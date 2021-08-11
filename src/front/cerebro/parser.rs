@@ -52,14 +52,60 @@ pub fn convert(module: Value, parties: u8) -> Computation {
 fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadata: &mut ComputationMetadata, outputs: &mut Vec<Term>) -> () {
     match value["_type"].as_str().unwrap().as_ref() {
         "Assign" => {
-            //assume there's only 1 target and that the target is a Name
-            let target: String = value["targets"][0]["id"].as_str().unwrap().to_string();
+
+            //Compute LHS -- 3 cases: Name, Subscript, Subscript-Subscript
+
+            let target = value["targets"][0].clone();
+            let target_type = target["_type"].as_str().unwrap().to_string();
+
+            let mut identifier = "shouldn't happen".to_owned();
+
+            //normal assignment
+            if target_type == "Name" {
+                identifier = target["id"].as_str().unwrap().to_string();
+            } else if target_type == "Subscript" {
+                let value_type = target["value"]["_type"].as_str().unwrap().to_string();
+                //indexing array
+                if value_type == "Name" {
+                    identifier = target["value"]["id"].as_str().unwrap().to_string();
+                //indexing matrix
+                } else {
+                    identifier = target["value"]["value"]["id"].as_str().unwrap().to_string();
+                }
+            } 
 
             //compute RHS of assignment
-            let val: Term = evaluate_expr(value["value"].clone(), symbol_table, metadata, &target);
+            let val: Term = evaluate_expr(value["value"].clone(), symbol_table, metadata, &identifier);
+
+            //normal assignment
+            if target_type == "Name" {
+                symbol_table.insert(identifier, val);
+            } else if target_type == "Subscript" {
+                let value_type = target["value"]["_type"].as_str().unwrap().to_string();
+                //indexing array
+                if value_type == "Name" {
+                    let array = (*symbol_table.get(&identifier).unwrap()).clone();
+                    let index = evaluate_expr(target["slice"]["value"].clone(), symbol_table, metadata, "");
+
+                    let new_array = term![Op::Store; array, index, val];
+
+                    symbol_table.insert(identifier, new_array);
+                //indexing matrix
+                } else {
+                    let matrix = (*symbol_table.get(&identifier).unwrap()).clone();
+                    let col = evaluate_expr(target["slice"]["value"].clone(), symbol_table, metadata, "");
+                    let row = evaluate_expr(target["value"]["slice"]["value"].clone(), symbol_table, metadata, "");
+
+                    let changed_array = term![Op::Store; term![Op::Select; matrix.clone(), row.clone()], col.clone(), val];
+
+                    let new_val = term![Op::Store; matrix, row, changed_array];
+
+                    symbol_table.insert(identifier, new_val);
+                }
+            } 
 
             //update symbol table
-            symbol_table.insert(target, val);
+            
         },
         "AugAssign" => {
             //assume there's only 1 target and that the target is a Name
@@ -217,7 +263,7 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                             rows)
                         )
                     );
-                    
+
                 } else if func_name == "array_index_secret_load_if" {
                     //res = array_index_secret_load_if(cond, array, index1, index2)
                         //does res = cond ? array[index1] : array[index2] 
@@ -231,11 +277,35 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                     let array_index2 = term![Op::Select; array.clone(), index2];
 
                     return term![Op::Ite; cond, array_index1, array_index2];
+                } else if func_name == "matadd" {
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let b = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+
+                    return term![Op::MatrixBinOp(MatrixBinOp::Add); a, b];
+                } else if func_name == "matsub" {
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let b = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+
+                    return term![Op::MatrixBinOp(MatrixBinOp::Sub); a, b];
+                    
+                } else if func_name == "matmul" {
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let b = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+
+                    return term![Op::MatrixBinOp(MatrixBinOp::Mul); a, b];
+                } else if func_name == "transpose" {
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+
+                    return term![Op::MatrixUnOp(MatrixUnOp::Transpose); a];
+                } else if func_name == "inverse" {
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+
+                    return term![Op::MatrixUnOp(MatrixUnOp::Inverse); a];
                 }
                 
             }
 
-            return leaf_term(Op::Const(crate::ir::term::Value::F32(3.1415926)));
+            return leaf_term(Op::Const(crate::ir::term::Value::F32(1.2345)));
             
         },
         "Compare" => {
@@ -272,7 +342,7 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
         _ => {
             //TODO: Throw Error
             //For now, return a Term containing a const of pi
-            return leaf_term(Op::Const(crate::ir::term::Value::F32(3.1415926)));
+            return leaf_term(Op::Const(crate::ir::term::Value::F32(5.678)));
         }
     }
 }

@@ -138,6 +138,9 @@ pub enum Op {
     Tuple,
     /// Get the n'th element of a tuple
     Field(usize),
+
+    MatrixBinOp(MatrixBinOp),
+    MatrixUnOp(MatrixUnOp),
 }
 
 /// Boolean AND
@@ -247,6 +250,8 @@ impl Op {
             Op::Store => Some(3),
             Op::Tuple => None,
             Op::Field(_) => Some(1),
+            Op::MatrixBinOp(_) => Some(2),
+            Op::MatrixUnOp(_) => Some(1),
         }
     }
 }
@@ -288,6 +293,8 @@ impl Display for Op {
             Op::Store => write!(f, "store"),
             Op::Tuple => write!(f, "tuple"),
             Op::Field(i) => write!(f, "field{}", i),
+            Op::MatrixBinOp(a) => write!(f, "{}", a),
+            Op::MatrixUnOp(a) => write!(f, "{}", a),
         }
     }
 }
@@ -574,6 +581,38 @@ impl Display for PfUnOp {
         match self {
             PfUnOp::Neg => write!(f, "-"),
             PfUnOp::Recip => write!(f, "pfrecip"),
+        }
+    }
+}
+
+#[derive(Clone, PartialEq, Eq, Hash, Debug)]
+pub enum MatrixBinOp {
+    Add,
+    Sub,
+    Mul
+}
+
+impl Display for MatrixBinOp {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        match self {
+            MatrixBinOp::Add => write!(f, "matadd"),
+            MatrixBinOp::Sub => write!(f, "matsub"),
+            MatrixBinOp::Mul => write!(f, "matmul"),
+        }
+    }
+}
+
+#[derive(Clone, PartialEq, Eq, Hash, Debug)]
+pub enum MatrixUnOp {
+    Inverse,
+    Transpose
+}
+
+impl Display for MatrixUnOp {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        match self {
+            MatrixUnOp::Inverse => write!(f, "matinv"),
+            MatrixUnOp::Transpose => write!(f, "transpose"),
         }
     }
 }

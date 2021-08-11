@@ -36,8 +36,8 @@ fn main() {
     let computation = convert(module, parties);
 
     for output in computation.outputs {
-        //let letified = Letified(output);
-        println!("{}", output);
+        let letified = Letified(output);
+        println!("{}", letified);
     }
 
     // println!("Converting Cerebro to aby");
