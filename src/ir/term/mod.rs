@@ -141,6 +141,7 @@ pub enum Op {
 
     MatrixBinOp(MatrixBinOp),
     MatrixUnOp(MatrixUnOp),
+    Sigmoid,
 }
 
 /// Boolean AND
@@ -252,6 +253,7 @@ impl Op {
             Op::Field(_) => Some(1),
             Op::MatrixBinOp(_) => Some(2),
             Op::MatrixUnOp(_) => Some(1),
+            Op::Sigmoid => Some(1)
         }
     }
 }
@@ -295,6 +297,7 @@ impl Display for Op {
             Op::Field(i) => write!(f, "field{}", i),
             Op::MatrixBinOp(a) => write!(f, "{}", a),
             Op::MatrixUnOp(a) => write!(f, "{}", a),
+            Op::Sigmoid => write!(f, "sigmoid")
         }
     }
 }
@@ -589,7 +592,8 @@ impl Display for PfUnOp {
 pub enum MatrixBinOp {
     Add,
     Sub,
-    Mul
+    Mul,
+    Scale
 }
 
 impl Display for MatrixBinOp {
@@ -598,6 +602,7 @@ impl Display for MatrixBinOp {
             MatrixBinOp::Add => write!(f, "matadd"),
             MatrixBinOp::Sub => write!(f, "matsub"),
             MatrixBinOp::Mul => write!(f, "matmul"),
+            MatrixBinOp::Scale => write!(f, "scale"),
         }
     }
 }
@@ -605,7 +610,7 @@ impl Display for MatrixBinOp {
 #[derive(Clone, PartialEq, Eq, Hash, Debug)]
 pub enum MatrixUnOp {
     Inverse,
-    Transpose
+    Transpose,
 }
 
 impl Display for MatrixUnOp {

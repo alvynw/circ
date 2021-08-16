@@ -1,5 +1,6 @@
 use serde_json::Value;
 use rug::Integer;
+use std::collections::BTreeMap;
 
 use crate::ir::term::*;
 
@@ -247,22 +248,41 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
 
                     return leaf_term(Op::Const(crate::ir::term::Value::BitVector(bv)));
                 } else if func_name == "c_int_array" {
-                    let length =  value["args"][0]["n"].as_i64().unwrap() as usize;
+                    let length = value["args"][0]["n"].as_i64().unwrap() as usize;
 
-                    return leaf_term(Op::Var(name.to_string(), Sort::Array(Box::new(Sort::BitVector(32)), Box::new(Sort::BitVector(32)), length)));                    
+                    let zero_bv = BitVector::new(Integer::from(0), 32); 
+
+                    return leaf_term(Op::Const(
+                        crate::ir::term::Value::Array(
+                            Sort::BitVector(32),
+                            Box::new(crate::ir::term::Value::BitVector(zero_bv)),
+                            BTreeMap::new(),
+                            length
+                        )
+                    ));                    
 
                 } else if func_name == "c_int_mat" {
                     let rows = value["args"][0]["n"].as_u64().unwrap() as usize;
                     let cols = value["args"][1]["n"].as_u64().unwrap() as usize;
                     
                     //Array of Array of 32-bit BitVectors
-                    return leaf_term(Op::Var(name.to_string(), 
-                        Sort::Array(
-                            Box::new(Sort::BitVector(32)), 
-                            Box::new(Sort::Array(Box::new(Sort::BitVector(32)), Box::new(Sort::BitVector(32)), cols)),
-                            rows)
-                        )
+                    let zero_bv = BitVector::new(Integer::from(0), 32);
+
+                    let zero_array = crate::ir::term::Value::Array(
+                        Sort::BitVector(32),
+                        Box::new(crate::ir::term::Value::BitVector(zero_bv)),
+                        BTreeMap::new(),
+                        cols
                     );
+
+                    return leaf_term(Op::Const(
+                        crate::ir::term::Value::Array(
+                            Sort::BitVector(32),
+                            Box::new(zero_array),
+                            BTreeMap::new(),
+                            rows
+                        )
+                    ));       
 
                 } else if func_name == "array_index_secret_load_if" {
                     //res = array_index_secret_load_if(cond, array, index1, index2)
@@ -301,6 +321,81 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                     let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
 
                     return term![Op::MatrixUnOp(MatrixUnOp::Inverse); a];
+                } else if func_name == "get_identity_matrix" {
+                    let size = value["args"][0]["n"].as_i64().unwrap() as usize;
+
+                    let zero_bv = BitVector::new(Integer::from(0), 32);
+                    let one_bv = BitVector::new(Integer::from(1), 32);
+
+                    let mut array_maps = vec![BTreeMap::new(); size];
+
+                    for (i, map) in array_maps.iter_mut().enumerate() {
+                        map.insert(
+                            crate::ir::term::Value::BitVector(BitVector::new(Integer::from(i), 32)), 
+                            crate::ir::term::Value::BitVector(one_bv.clone())
+                        );
+                    }
+
+                    let mut arrays = Vec::new();
+
+                    for i in 0..size {
+                        arrays.push(crate::ir::term::Value::Array(
+                            Sort::BitVector(32),
+                            Box::new(crate::ir::term::Value::BitVector(zero_bv.clone())),
+                            array_maps[i].clone(),
+                            size
+                        ));
+                    }
+
+                    let mut matrix_map = BTreeMap::new();
+
+                    for (i, array) in arrays.iter().enumerate() {
+                        matrix_map.insert(
+                            crate::ir::term::Value::BitVector(BitVector::new(Integer::from(i), 32)), 
+                            array.clone()
+                        );
+                    }
+
+                    let zero_array = crate::ir::term::Value::Array(
+                        Sort::BitVector(32),
+                        Box::new(crate::ir::term::Value::BitVector(zero_bv)),
+                        BTreeMap::new(),
+                        size
+                    );
+
+                    return leaf_term(Op::Const(
+                        crate::ir::term::Value::Array(
+                            Sort::BitVector(32),
+                            Box::new(zero_array),
+                            matrix_map,
+                            size
+                        )
+                    ));
+
+                } else if func_name == "mat_assign" {
+
+                    //assume src and dest are Names
+                    let dest = value["args"][0]["id"].as_str().unwrap().to_string();
+                    let src = value["args"][1]["id"].as_str().unwrap().to_string();
+
+                    let src_clone = (*symbol_table.get(&src).unwrap()).clone();
+
+                    symbol_table.insert(dest, src_clone);
+                } else if func_name == "mat_const_mul" {
+                    //should be Num
+                    let scale = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+
+                    //should be Name
+                    let mat_key = value["args"][1]["id"].as_str().unwrap().to_string();
+
+                    let mat = (*symbol_table.get(&mat_key).unwrap()).clone();
+
+                    return term![Op::MatrixBinOp(MatrixBinOp::Scale); scale, mat];
+
+                    
+                } else if func_name == "sigmoid" {
+                    let v = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    return term![Op::Sigmoid; v];
                 }
                 
             }
