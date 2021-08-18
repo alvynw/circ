@@ -142,6 +142,8 @@ pub enum Op {
     MatrixBinOp(MatrixBinOp),
     MatrixUnOp(MatrixUnOp),
     Sigmoid,
+
+    Piecewise(PiecewiseEnum)
 }
 
 /// Boolean AND
@@ -253,7 +255,8 @@ impl Op {
             Op::Field(_) => Some(1),
             Op::MatrixBinOp(_) => Some(2),
             Op::MatrixUnOp(_) => Some(1),
-            Op::Sigmoid => Some(1)
+            Op::Sigmoid => Some(1),
+            Op::Piecewise(_) => Some(1),
         }
     }
 }
@@ -297,7 +300,8 @@ impl Display for Op {
             Op::Field(i) => write!(f, "field{}", i),
             Op::MatrixBinOp(a) => write!(f, "{}", a),
             Op::MatrixUnOp(a) => write!(f, "{}", a),
-            Op::Sigmoid => write!(f, "sigmoid")
+            Op::Sigmoid => write!(f, "sigmoid"),
+            Op::Piecewise(x) => write!(f, "piecewise {}", x)
         }
     }
 }
@@ -621,6 +625,78 @@ impl Display for MatrixUnOp {
         }
     }
 }
+
+#[derive(Clone, PartialEq, Eq, Hash, Debug)]
+pub enum PiecewiseEnum {
+    Unfinished,
+    Finished(Piecewise),
+}
+
+impl Display for PiecewiseEnum {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        match self {
+            PiecewiseEnum::Unfinished => write!(f, "unfinished"),
+            PiecewiseEnum::Finished(_) => write!(f, "finished"),
+        }
+    }
+}
+
+#[derive(Clone, PartialEq, Eq, Hash, Debug)]
+pub struct Piecewise {
+    pub num_boundaries: u8,
+    //Uses Vector/Array of Term but should really be "number-like" Terms
+    pub lower_bound: [Term; 3],
+    pub upper_bound: [Term; 3],
+    pub bounds: Vec<[Term; 4]>,
+    added_boundaries: u8,
+}
+
+impl Display for Piecewise {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        return write!(f, "TODO")
+    }
+}
+
+impl Piecewise {
+    pub fn new(num_boundaries: u8) -> Piecewise {
+        let zero_bv_term = leaf_term(Op::Const(Value::BitVector(BitVector::zeros(32))));
+        let lower_bound = [zero_bv_term.clone(), zero_bv_term.clone(), zero_bv_term.clone()];
+        let upper_bound = [zero_bv_term.clone(), zero_bv_term.clone(), zero_bv_term.clone()];
+        let bounds = Vec::new();
+        Piecewise {
+            num_boundaries,
+            lower_bound,
+            upper_bound,
+            bounds,
+            added_boundaries: 0
+        }
+    }
+
+    pub fn is_complete(&self) -> bool {
+        self.added_boundaries == self.num_boundaries
+    }
+
+    //left and right can't be None simultaneously
+    pub fn add_boundary(&mut self, left: Option<Term>, right: Option<Term>, a: Term, b: Term) -> () {
+        if self.is_complete() {
+            return;
+        }
+
+        if left.is_none() && right.is_none() {
+            //throw error
+        }
+
+        if left.is_none() {
+            self.lower_bound = [right.unwrap(), a, b];
+        } else if right.is_none() {
+            self.upper_bound = [left.unwrap(), a, b];
+        } else {
+            self.bounds.push([left.unwrap(), right.unwrap(), a , b]);
+        }
+        self.added_boundaries += 1;
+    }
+}
+
 
 #[derive(Clone, PartialEq, Eq, Hash)]
 /// A term: an operator applied to arguements

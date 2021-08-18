@@ -40,17 +40,19 @@ pub fn convert(module: Value, parties: u8) -> Computation {
 
     let mut outputs: Vec<Term> = Vec::new();
 
+    let mut piecewise_unfinished: HashMap<String, Piecewise> = HashMap::new();
+
     //Modules have a `body` entry
     //process every node in `body`
     for value in module["body"].as_array().unwrap() {
-        evaluate_stmt(value.clone(), &mut symbol_table, &mut metadata, &mut outputs);
+        evaluate_stmt(value.clone(), &mut symbol_table, &mut metadata, &mut outputs, &mut piecewise_unfinished);
     }
 
     return Computation { outputs: outputs, metadata: metadata, ..Default::default() };
 }
 
 //
-fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadata: &mut ComputationMetadata, outputs: &mut Vec<Term>) -> () {
+fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadata: &mut ComputationMetadata, outputs: &mut Vec<Term>, piecewise_unfinished: &mut HashMap<String, Piecewise>) -> () {
     match value["_type"].as_str().unwrap().as_ref() {
         "Assign" => {
 
@@ -76,7 +78,7 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
             } 
 
             //compute RHS of assignment
-            let val: Term = evaluate_expr(value["value"].clone(), symbol_table, metadata, &identifier);
+            let val: Term = evaluate_expr(value["value"].clone(), symbol_table, metadata, &identifier, piecewise_unfinished);
 
             //normal assignment
             if target_type == "Name" {
@@ -86,7 +88,7 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                 //indexing array
                 if value_type == "Name" {
                     let array = (*symbol_table.get(&identifier).unwrap()).clone();
-                    let index = evaluate_expr(target["slice"]["value"].clone(), symbol_table, metadata, "");
+                    let index = evaluate_expr(target["slice"]["value"].clone(), symbol_table, metadata, "", piecewise_unfinished);
 
                     let new_array = term![Op::Store; array, index, val];
 
@@ -94,8 +96,8 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                 //indexing matrix
                 } else {
                     let matrix = (*symbol_table.get(&identifier).unwrap()).clone();
-                    let col = evaluate_expr(target["slice"]["value"].clone(), symbol_table, metadata, "");
-                    let row = evaluate_expr(target["value"]["slice"]["value"].clone(), symbol_table, metadata, "");
+                    let col = evaluate_expr(target["slice"]["value"].clone(), symbol_table, metadata, "", piecewise_unfinished);
+                    let row = evaluate_expr(target["value"]["slice"]["value"].clone(), symbol_table, metadata, "", piecewise_unfinished);
 
                     let changed_array = term![Op::Store; term![Op::Select; matrix.clone(), row.clone()], col.clone(), val];
 
@@ -121,7 +123,7 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
             println!("Sort in AugAssign: {}", sort);
             
             //compute RHS of assignment
-            let val: Term = evaluate_expr(value["value"].clone(), symbol_table, metadata, "");
+            let val: Term = evaluate_expr(value["value"].clone(), symbol_table, metadata, "", piecewise_unfinished);
             
             let op_str = value["op"]["_type"].as_str().unwrap().to_string();
             let op: Op = map_nary_op(sort, op_str);
@@ -150,8 +152,8 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                 let reveal_var_term = (*symbol_table.get(&reveal_var).unwrap()).clone();
                 outputs.push(reveal_var_term);
             } else if func_name == "test" {
-                let left = evaluate_expr(call["args"][0].clone(), symbol_table, metadata, "");
-                let right = evaluate_expr(call["args"][1].clone(), symbol_table, metadata, "");
+                let left = evaluate_expr(call["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
+                let right = evaluate_expr(call["args"][1].clone(), symbol_table, metadata, "", piecewise_unfinished);
 
                 let eq = term![Op::Eq; left, right];
                 let ite = term![Op::Ite; eq, 
@@ -159,6 +161,35 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                             leaf_term(Op::Const(crate::ir::term::Value::Bool(false)))];
 
                 outputs.push(ite);
+            } else if func_name == "add_boundary" {
+                //Update piecewise in progress
+                let piecewise_id = func["value"]["id"].as_str().unwrap().to_string();
+
+                let mut piecewise = (*piecewise_unfinished.get(&piecewise_id).unwrap()).clone();
+
+                let left_term = value["args"][0].clone();
+                let right_term = value["args"][1].clone();
+
+                let left = if left_term["_type"].as_str().unwrap() == "Name" && left_term["id"] == "None" {
+                    None
+                } else {
+                    Some(evaluate_expr(left_term, symbol_table, metadata, "", piecewise_unfinished))
+                };
+
+                let right = if right_term["_type"].as_str().unwrap() == "Name" && right_term["id"] == "None" {
+                    None
+                } else {
+                    Some(evaluate_expr(right_term, symbol_table, metadata, "", piecewise_unfinished))
+                };
+ 
+                let a = evaluate_expr(value["args"][2].clone(), symbol_table, metadata, "", piecewise_unfinished);
+                let b = evaluate_expr(value["args"][3].clone(), symbol_table, metadata, "", piecewise_unfinished);
+
+                piecewise.add_boundary(left, right, a, b);
+
+                if piecewise.is_complete() {
+                    symbol_table.insert(piecewise_id, leaf_term(Op::Piecewise(PiecewiseEnum::Finished(piecewise))));
+                }
             }
         },
         "FunctionDef" => {
@@ -173,14 +204,14 @@ fn evaluate_stmt(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
     }
 }
 
-fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadata: &mut ComputationMetadata, name: &str) -> Term {
+fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadata: &mut ComputationMetadata, name: &str, piecewise_unfinished: &mut HashMap<String, Piecewise>) -> Term {
     match value["_type"].as_str().unwrap().as_ref() {
         
         "BinOp" => {
-            let left = evaluate_expr(value["left"].clone(), symbol_table, metadata, "");
+            let left = evaluate_expr(value["left"].clone(), symbol_table, metadata, "", piecewise_unfinished);
             let sort_left: Sort = check_rec(&left);
 
-            let right = evaluate_expr(value["right"].clone(), symbol_table, metadata, "");
+            let right = evaluate_expr(value["right"].clone(), symbol_table, metadata, "", piecewise_unfinished);
             let sort_right: Sort = check_rec(&right);
 
             if sort_left != sort_right {
@@ -234,7 +265,7 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                             rows)
                         )
                     );
-                }
+                } 
 
             } else if func_type == "Name" {
                 let func_name = func["id"].as_str().unwrap().to_string();
@@ -288,37 +319,37 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                     //res = array_index_secret_load_if(cond, array, index1, index2)
                         //does res = cond ? array[index1] : array[index2] 
 
-                    let cond = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, name);
-                    let array = evaluate_expr(value["args"][1].clone(), symbol_table, metadata, name);
-                    let index1 = evaluate_expr(value["args"][2].clone(), symbol_table, metadata, name);
-                    let index2 = evaluate_expr(value["args"][3].clone(), symbol_table, metadata, name);
+                    let cond = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, name, piecewise_unfinished);
+                    let array = evaluate_expr(value["args"][1].clone(), symbol_table, metadata, name, piecewise_unfinished);
+                    let index1 = evaluate_expr(value["args"][2].clone(), symbol_table, metadata, name, piecewise_unfinished);
+                    let index2 = evaluate_expr(value["args"][3].clone(), symbol_table, metadata, name, piecewise_unfinished);
 
                     let array_index1 = term![Op::Select; array.clone(), index1];
                     let array_index2 = term![Op::Select; array.clone(), index2];
 
                     return term![Op::Ite; cond, array_index1, array_index2];
                 } else if func_name == "matadd" {
-                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
-                    let b = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
+                    let b = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
 
                     return term![Op::MatrixBinOp(MatrixBinOp::Add); a, b];
                 } else if func_name == "matsub" {
-                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
-                    let b = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
+                    let b = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
 
                     return term![Op::MatrixBinOp(MatrixBinOp::Sub); a, b];
                     
                 } else if func_name == "matmul" {
-                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
-                    let b = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
+                    let b = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
 
                     return term![Op::MatrixBinOp(MatrixBinOp::Mul); a, b];
                 } else if func_name == "transpose" {
-                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
 
                     return term![Op::MatrixUnOp(MatrixUnOp::Transpose); a];
                 } else if func_name == "inverse" {
-                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let a = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
 
                     return term![Op::MatrixUnOp(MatrixUnOp::Inverse); a];
                 } else if func_name == "get_identity_matrix" {
@@ -383,7 +414,7 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
                     symbol_table.insert(dest, src_clone);
                 } else if func_name == "mat_const_mul" {
                     //should be Num
-                    let scale = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let scale = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
 
                     //should be Name
                     let mat_key = value["args"][1]["id"].as_str().unwrap().to_string();
@@ -394,8 +425,17 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
 
                     
                 } else if func_name == "sigmoid" {
-                    let v = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "");
+                    let v = evaluate_expr(value["args"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
                     return term![Op::Sigmoid; v];
+                } else if func_name == "Piecewise" {
+                    //setup Piecewise-unfinished
+                        //Add to piecewise table
+
+                    let num_boundaries = value["args"][0]["n"].as_u64().unwrap() as u8;
+                    piecewise_unfinished.insert(name.to_string(), Piecewise::new(num_boundaries));
+
+                    return leaf_term(Op::Piecewise(PiecewiseEnum::Unfinished));
+                    
                 }
                 
             }
@@ -404,11 +444,11 @@ fn evaluate_expr(value: Value, symbol_table: &mut HashMap<String, Term>, metadat
             
         },
         "Compare" => {
-            let left = evaluate_expr(value["left"].clone(), symbol_table, metadata, "");
+            let left = evaluate_expr(value["left"].clone(), symbol_table, metadata, "", piecewise_unfinished);
             let sort_left: Sort = check_rec(&left);
 
             //assume only one (other) comparator
-            let right = evaluate_expr(value["comparators"][0].clone(), symbol_table, metadata, "");
+            let right = evaluate_expr(value["comparators"][0].clone(), symbol_table, metadata, "", piecewise_unfinished);
             let sort_right: Sort = check_rec(&right);
 
             if sort_left != sort_right {
